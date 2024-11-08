@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f35a0cc7-8115-4fef-bf09-bbe98cf03775" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/api.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moun/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/moun/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/moun/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moun/src/main/java/io/moun/api/MounApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/moun/src/main/java/io/moun/api/MounApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moun/src/main/resources/data.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +76,7 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="MounApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
       <module name="api.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="io.moun.api.MounApplication" />
       <method v="2">
@@ -105,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730821665151</updated>
       <workItem from="1730821666172" duration="134000" />
-      <workItem from="1731050439823" duration="2522000" />
+      <workItem from="1731050439823" duration="4771000" />
     </task>
     <servers />
   </component>
