@@ -18,8 +18,13 @@ public class Member extends BaseEntity {
 
     @Embedded
     private Auth auth;
+    @Embedded
+    private SNS sns;
     
     @NotNull
-    private String username;
-    
+    private String nickname;
+    @NotNull
+    private String information;
+    @NotNull
+    private String profilePicture;
 }
