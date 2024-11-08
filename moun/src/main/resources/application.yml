@@ -17,7 +17,7 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: create #change to none after create once
+      ddl-auto: none #change to none after create once
     show-sql: true
     properties:
       hibernate:
@@ -26,7 +26,10 @@ spring:
   sql:
     init:
       mode: never #after initialize hibernate, do sql query(data.sql)
-      
+  main:
+    banner-mode: off
+
+
 ---
 # test profile
 spring:
