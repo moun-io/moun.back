@@ -15,7 +15,7 @@ import org.hibernate.annotations.Immutable;
 public class Genre {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        private int id;
 
         @Enumerated(EnumType.STRING)
         private GenreType genreType;

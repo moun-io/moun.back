@@ -13,6 +13,14 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "member_auction_relation", 
+        uniqueConstraints = {@UniqueConstraint(
+                name = "UniqueMemberAndAuction",
+                columnNames = {
+                        "member_id", "auction_id"
+                }
+        )}
+)
 public class MemberAuctionRelation extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
