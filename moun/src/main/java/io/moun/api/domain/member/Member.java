@@ -1,12 +1,15 @@
 package io.moun.api.domain.member;
 
 import io.moun.api.domain.BaseEntity;
+import io.moun.api.domain.song.Song;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,4 +30,7 @@ public class Member extends BaseEntity {
     private String information;
     @NotNull
     private String profilePicture;
+
+    @OneToMany(fetch = FetchType.LAZY,  mappedBy = "member")
+    private List<Song> songs;
 }
