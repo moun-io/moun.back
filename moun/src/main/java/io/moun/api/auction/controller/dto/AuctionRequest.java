@@ -1,15 +1,17 @@
 package io.moun.api.auction.controller.dto;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+
+@Data
 public class AuctionRequest {
-
-    @NotNull
-    private String title;
-    @NotNull
-    private String description;
-    @NotNull
-    private String songFile;
-    @NotNull
-    private String coverImage;
+    
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private int startBid;
+    private int winningBid;
+    private boolean isCopyrightTransfer;
+    private boolean isExpired;
 }
