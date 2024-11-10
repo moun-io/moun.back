@@ -17,11 +17,12 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: create #change to none after create once
+      ddl-auto: update #change to none after create once
     show-sql: true
     properties:
       hibernate:
-        format_sql: true #show jpa query log
+        format_sql: false #show jpa query log
+    open-in-view: false
   
   sql:
     init:
@@ -39,7 +40,7 @@ spring:
   
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
