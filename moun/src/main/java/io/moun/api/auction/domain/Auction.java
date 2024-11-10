@@ -1,4 +1,4 @@
-package io.moun.api.auction;
+package io.moun.api.auction.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

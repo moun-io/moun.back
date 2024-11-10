@@ -1,11 +1,12 @@
-package io.moun.api.song;
+package io.moun.api.song.domain;
 
 import io.moun.api.common.domain.BaseEntity;
-import io.moun.api.auction.Auction;
+import io.moun.api.auction.domain.Auction;
 import io.moun.api.member.domain.Member;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,4 +34,13 @@ public class Song extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "auction_id")
     private Auction auction;
+
+    @Builder
+    public Song(Auction auction, String coverImage, String songFile, String title, String description) {
+        this.auction = auction;
+        this.coverImage = coverImage;
+        this.songFile = songFile;
+        this.title = title;
+        this.description = description;
+    }
 }
