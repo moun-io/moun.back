@@ -1,6 +1,6 @@
 package io.moun.api.songvibe;
 
-import io.moun.api.song.Song;
+import io.moun.api.song.domain.Song;
 import io.moun.api.vibe.Vibe;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

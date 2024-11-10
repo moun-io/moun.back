@@ -1,7 +1,7 @@
 package io.moun.api.member.domain;
 
 import io.moun.api.common.domain.BaseEntity;
-import io.moun.api.song.Song;
+import io.moun.api.song.domain.Song;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;

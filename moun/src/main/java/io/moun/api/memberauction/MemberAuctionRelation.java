@@ -1,7 +1,7 @@
 package io.moun.api.memberauction;
 
 import io.moun.api.common.domain.BaseEntity;
-import io.moun.api.auction.Auction;
+import io.moun.api.auction.domain.Auction;
 import io.moun.api.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
