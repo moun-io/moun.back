@@ -20,10 +20,17 @@ import javax.sql.DataSource;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((auth)-> auth
-                .anyRequest().permitAll());
-        http.httpBasic(Customizer.withDefaults());
-        http.csrf().disable();
+        http
+                //Authorization
+                .authorizeHttpRequests((auth)-> auth
+                    .requestMatchers("/api/auth/register").permitAll()
+                    .requestMatchers("/api/auth/login").not().authenticated()
+                        .anyRequest().authenticated())
+                //Login Method
+                .httpBasic(Customizer.withDefaults())
+                //CSRF Disabled
+                .csrf().disable();
+
         return http.build();
     }
 
