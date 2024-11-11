@@ -22,7 +22,7 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: create #change to none after create once
+      ddl-auto: update #change to none after create once
     show-sql: true
     properties:
       hibernate:
