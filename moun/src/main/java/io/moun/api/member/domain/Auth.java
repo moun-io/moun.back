@@ -2,12 +2,16 @@ package io.moun.api.member.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name="users")
-public class User {
+public class Auth {
     @Id
     @NotNull
     private String username;
@@ -16,7 +20,7 @@ public class User {
     @NotNull
     private int enabled;
 
-    @OneToMany
-    @JoinColumn(name="username")
-    private List<Authority> authorities;
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name ="username")
+    private List<Role> roles;
 }

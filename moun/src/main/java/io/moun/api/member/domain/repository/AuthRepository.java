@@ -1,0 +1,11 @@
+package io.moun.api.member.domain.repository;
+
+import io.moun.api.member.domain.Auth;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface AuthRepository extends JpaRepository<Auth, Long> {
+    Optional<Auth> findByUsername(String username );
+    Boolean existsByUsername(String username);
+}
