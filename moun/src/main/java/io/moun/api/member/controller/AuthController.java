@@ -31,8 +31,12 @@ public class AuthController {
     }
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        authService.loginAuth(loginRequest);
-        return ResponseEntity.ok("Login Success");
+        boolean success = authService.loginAuth(loginRequest);
+        if(!success) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login failed!");
+        } else {
+            return ResponseEntity.ok("Login Success");
+        }
 
     }
 }
