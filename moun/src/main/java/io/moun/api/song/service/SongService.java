@@ -9,20 +9,22 @@ import io.moun.api.etc.utils.JWTUtils;
 import io.moun.api.member.domain.Member;
 import io.moun.api.member.domain.MemberRepository;
 import io.moun.api.song.controller.dto.SongRequest;
+import io.moun.api.song.controller.dto.SongResponse;
 import io.moun.api.song.domain.Song;
 import io.moun.api.song.domain.SongRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
-@Transactional()
 @Service
 @RequiredArgsConstructor
 public class SongService {
@@ -32,7 +34,9 @@ public class SongService {
     private final AuctionRepository auctionRepository;
     private final MemberRepository memberRepository;
     private final MounFileService mounFileService;
-    
+    private final StringHttpMessageConverter stringHttpMessageConverter;
+
+    @Transactional
     public ResponseEntity<String> uploadSongAndAuction(String token,
                                                        SongRequest songRequest,
                                                        AuctionRequest auctionRequest,
@@ -47,11 +51,11 @@ public class SongService {
         } catch (NumberFormatException e) {
             throw new RuntimeException("Can't find member with token.");
         }
-        Member member = memberRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Can't find member with id."));
+        Member member = memberRepository.findById(1L).orElseThrow(() -> new NoSuchElementException("Can't find member with id."));
         Auction savedAuction = auctionRepository.save(modelMapper.map(auctionRequest, Auction.class));
         
-        MounFile savedSongFile = mounFileService.uploadFileToDB(songFile);
-        MounFile savedCoverFile = mounFileService.uploadFileToDB(coverFile);
+        MounFile savedSongFile = mounFileService.uploadFileToLocalAndSave(songFile);
+        MounFile savedCoverFile = mounFileService.uploadFileToLocalAndSave(coverFile);
         
         Song.builder()
                 .member(member)
@@ -63,5 +67,32 @@ public class SongService {
                 .build();
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Successful upload");
+    }
+    
+    
+    public ResponseEntity<List<SongResponse>> findAllSongByMemberId(Long id) {
+        
+        Member member = memberRepository.findById(id).orElseThrow(() -> 
+                new NoSuchElementException("Can't find member with id."));
+        
+        List<Song> songsByMember = songRepository.findAllByMember(member);
+
+        List<SongResponse> songResponseList = songsByMember.stream()
+                .map(song -> {
+                    String songFileDir = mounFileService.LOCAL_UPLOAD_DIR + "/" + song.getSongFile().getFileName();
+                    String coverFileDir = mounFileService.LOCAL_UPLOAD_DIR + "/" + song.getCoverImageFile().getFileName();
+                    
+                    return SongResponse.builder()
+                        .id(song.getId())
+                        .title(song.getTitle())
+                        .description(song.getDescription())
+                        .member(member)
+                        .auction(song.getAuction())
+                        .songUrl(songFileDir)
+                        .coverUrl(coverFileDir)
+                        .build();})
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK).body(songResponseList);
     }
 }

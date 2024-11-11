@@ -17,16 +17,17 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: update #change to none after create once
-    show-sql: true
+      ddl-auto: none #change to none after create once
     properties:
       hibernate:
-        format_sql: false #show jpa query log
+        format_sql: true
+        show_sql: true
     open-in-view: false
+    defer-datasource-initialization: false
   
-  sql:
-    init:
-      mode: never #after initialize hibernate, do sql query(data.sql)
+  #sql:
+    #init:
+      #mode:
   main:
     banner-mode: off
 
@@ -56,7 +57,7 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: C:\Users\Jaero0\Desktop\upload test
+      location: C:\Users\Jaero0\Desktop\uploadTest
       max-request-size: 25MB
       max-file-size: 20MB
 ---

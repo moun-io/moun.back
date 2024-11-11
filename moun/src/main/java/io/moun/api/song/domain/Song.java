@@ -1,6 +1,6 @@
 package io.moun.api.song.domain;
 
-import io.moun.api.common.domain.BaseEntity;
+import io.moun.api.common.BaseEntity;
 import io.moun.api.auction.domain.Auction;
 import io.moun.api.common.domain.MounFile;
 import io.moun.api.member.domain.Member;

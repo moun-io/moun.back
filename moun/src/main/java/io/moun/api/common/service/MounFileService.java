@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
@@ -17,9 +19,10 @@ public class MounFileService {
     private final MounFileRepository mounFileRepository;
 
     @Value("${spring.servlet.multipart.location}")
-    private String LOCAL_UPLOAD_DIR;
+    public String LOCAL_UPLOAD_DIR;
 
-    public MounFile uploadFileToDB(MultipartFile file) {
+    //upload file
+    public MounFile uploadFileToLocalAndSave(MultipartFile file) {
 
         try {
             String fileName = generateUniqueFileName(file);
@@ -48,5 +51,7 @@ public class MounFileService {
         
         return "file_" + uuid + fileExtension;
     }
+    
+    
     
 }
