@@ -1,4 +1,4 @@
-package io.moun.api.common.config;
+package io.moun.api.etc.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

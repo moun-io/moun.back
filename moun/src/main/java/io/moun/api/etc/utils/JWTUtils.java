@@ -1,4 +1,4 @@
-package io.moun.api.common.utils;
+package io.moun.api.etc.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

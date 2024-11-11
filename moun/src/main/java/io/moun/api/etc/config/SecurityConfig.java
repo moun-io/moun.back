@@ -1,4 +1,4 @@
-package io.moun.api.common.config;
+package io.moun.api.etc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
