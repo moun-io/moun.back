@@ -17,10 +17,12 @@ public class Auth {
     private String username;
     @NotNull
     private String password;
-    @NotNull
-    private int enabled;
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name ="username")
     private List<Role> roles;
+
+    public void addRole(String roleType){
+        roles.add(new Role(username,roleType));
+    }
 }
