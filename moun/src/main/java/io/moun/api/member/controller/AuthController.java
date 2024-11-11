@@ -1,5 +1,6 @@
 package io.moun.api.member.controller;
 
+import io.moun.api.member.controller.dto.LoginRequest;
 import io.moun.api.member.controller.dto.RegisterRequest;
 import io.moun.api.member.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,8 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.CREATED).body("User successfully registered!");
         }
     }
-    @
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        return ResponseEntity.ok("login Success");
+    }
 }
