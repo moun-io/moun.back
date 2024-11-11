@@ -11,6 +11,7 @@ import io.moun.api.member.domain.MemberRepository;
 import io.moun.api.song.controller.dto.SongRequest;
 import io.moun.api.song.domain.Song;
 import io.moun.api.song.domain.SongRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.NoSuchElementException;
 
+@Transactional()
 @Service
 @RequiredArgsConstructor
 public class SongService {
@@ -30,9 +32,6 @@ public class SongService {
     private final AuctionRepository auctionRepository;
     private final MemberRepository memberRepository;
     private final MounFileService mounFileService;
-
-    @Value("${spring.servlet.multipart.location}")
-    private String LOCAL_UPLOAD_DIR;
     
     public ResponseEntity<String> uploadSongAndAuction(String token,
                                                        SongRequest songRequest,
@@ -50,6 +49,7 @@ public class SongService {
         }
         Member member = memberRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Can't find member with id."));
         Auction savedAuction = auctionRepository.save(modelMapper.map(auctionRequest, Auction.class));
+        
         MounFile savedSongFile = mounFileService.uploadFileToDB(songFile);
         MounFile savedCoverFile = mounFileService.uploadFileToDB(coverFile);
         
