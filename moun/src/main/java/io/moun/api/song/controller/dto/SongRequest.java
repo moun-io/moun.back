@@ -8,6 +8,4 @@ public class SongRequest {
     
     private String title;
     private String description;
-    private String songFile;
-    private String coverImage;
 }
