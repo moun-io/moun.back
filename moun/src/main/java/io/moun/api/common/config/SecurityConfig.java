@@ -1,6 +1,7 @@
 package io.moun.api.common.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -21,15 +22,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                //CSRF Disabled
+                .csrf(csrf->csrf.disable())
                 //Authorization
                 .authorizeHttpRequests((auth)-> auth
-                    .requestMatchers("/api/auth/register").permitAll()
-                    .requestMatchers("/api/auth/login").not().authenticated()
-                        .anyRequest().authenticated())
+                        .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()  // you don't need to put context-path here
+                        .requestMatchers(HttpMethod.GET, "/auth").permitAll()
+                        .anyRequest().authenticated());
+
                 //Login Method
-                .httpBasic(Customizer.withDefaults())
-                //CSRF Disabled
-                .csrf().disable();
+                http.formLogin(Customizer.withDefaults());
+
+
 
         return http.build();
     }

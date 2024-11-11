@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Auth {
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name ="username")
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<Role>();
 
     public void addRole(String roleType){
         roles.add(new Role(username,roleType));

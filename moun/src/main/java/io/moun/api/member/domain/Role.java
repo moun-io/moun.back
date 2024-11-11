@@ -2,12 +2,14 @@ package io.moun.api.member.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="roles")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Role {
 
     @Id
