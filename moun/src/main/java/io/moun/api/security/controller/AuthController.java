@@ -1,8 +1,8 @@
-package io.moun.api.member.controller;
+package io.moun.api.security.controller;
 
-import io.moun.api.member.controller.dto.LoginRequest;
-import io.moun.api.member.controller.dto.RegisterRequest;
-import io.moun.api.member.service.AuthService;
+import io.moun.api.security.controller.dto.LoginRequest;
+import io.moun.api.security.controller.dto.RegisterRequest;
+import io.moun.api.security.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

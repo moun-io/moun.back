@@ -1,4 +1,4 @@
-package io.moun.api.member.domain;
+package io.moun.api.security.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

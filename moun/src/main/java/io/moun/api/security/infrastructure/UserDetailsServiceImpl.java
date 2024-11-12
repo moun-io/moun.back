@@ -1,8 +1,8 @@
-package io.moun.api.member.infrastructure;
+package io.moun.api.security.infrastructure;
 
-import io.moun.api.member.domain.Auth;
-import io.moun.api.member.domain.Role;
-import io.moun.api.member.domain.repository.AuthRepository;
+import io.moun.api.security.domain.Auth;
+import io.moun.api.security.domain.Role;
+import io.moun.api.security.domain.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,9 +1,7 @@
 package io.moun.api.controller;
 
-import io.moun.api.member.controller.dto.RegisterRequest;
-import io.moun.api.member.domain.Auth;
-import io.moun.api.member.domain.repository.AuthRepository;
-import io.moun.api.member.service.AuthService;
+import io.moun.api.security.controller.dto.RegisterRequest;
+import io.moun.api.security.service.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

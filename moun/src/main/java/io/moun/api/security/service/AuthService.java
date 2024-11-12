@@ -1,7 +1,7 @@
-package io.moun.api.member.service;
+package io.moun.api.security.service;
 
-import io.moun.api.member.controller.dto.LoginRequest;
-import io.moun.api.member.controller.dto.RegisterRequest;
+import io.moun.api.security.controller.dto.LoginRequest;
+import io.moun.api.security.controller.dto.RegisterRequest;
 
 public interface AuthService {
     public boolean registerAuth(RegisterRequest registerRequest);

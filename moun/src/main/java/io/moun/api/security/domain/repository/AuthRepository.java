@@ -1,6 +1,6 @@
-package io.moun.api.member.domain.repository;
+package io.moun.api.security.domain.repository;
 
-import io.moun.api.member.domain.Auth;
+import io.moun.api.security.domain.Auth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

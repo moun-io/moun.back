@@ -1,15 +1,12 @@
-package io.moun.api.member.infrastructure;
+package io.moun.api.security.infrastructure;
 
-import io.moun.api.member.controller.dto.LoginRequest;
-import io.moun.api.member.controller.dto.RegisterRequest;
-import io.moun.api.member.domain.Auth;
-import io.moun.api.member.domain.Role;
-import io.moun.api.member.domain.repository.AuthRepository;
-import io.moun.api.member.domain.repository.RoleRepository;
-import io.moun.api.member.service.AuthService;
-import jakarta.transaction.Transactional;
+import io.moun.api.security.controller.dto.LoginRequest;
+import io.moun.api.security.controller.dto.RegisterRequest;
+import io.moun.api.security.domain.Auth;
+import io.moun.api.security.domain.repository.AuthRepository;
+import io.moun.api.security.domain.repository.RoleRepository;
+import io.moun.api.security.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,9 +14,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class AuthServiceImpl implements AuthService {
