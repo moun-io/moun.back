@@ -1,6 +1,7 @@
 package io.moun.api.security.controller;
 
 import io.moun.api.security.controller.dto.LoginRequest;
+import io.moun.api.security.controller.dto.LoginResponse;
 import io.moun.api.security.controller.dto.RegisterRequest;
 import io.moun.api.security.domain.vo.JwtToken;
 import io.moun.api.security.service.AuthService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.security.auth.login.LoginContext;
 
 @RestController
 @RequestMapping("/auth")
@@ -32,13 +35,14 @@ public class AuthController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid  @RequestBody LoginRequest loginRequest) {
-//        JwtToken success = authService.loginAuth(loginRequest);
-//        if(!success) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login failed!");
-//        } else {
-            return ResponseEntity.ok("Login Success");
-//        }
+    public ResponseEntity<LoginResponse> login(@Valid  @RequestBody LoginRequest loginRequest) {
+        JwtToken token = authService.loginAuth(loginRequest);
+        if(token != null) {
+            return ResponseEntity.ok(new LoginResponse(token.getValue()));
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new LoginResponse("Invalid username or password"));
+
+        }
 
     }
 }
