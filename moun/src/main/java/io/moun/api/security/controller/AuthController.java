@@ -1,5 +1,6 @@
 package io.moun.api.security.controller;
 
+import io.moun.api.security.controller.dto.CheckRequest;
 import io.moun.api.security.controller.dto.LoginRequest;
 import io.moun.api.security.controller.dto.LoginResponse;
 import io.moun.api.security.controller.dto.RegisterRequest;
@@ -46,12 +47,12 @@ public class AuthController {
 
     }
     @PostMapping("/check")
-    public ResponseEntity<LoginResponse> check(@Valid  @RequestBody LoginRequest loginRequest) {
-        JwtToken token = authService.loginAuth(loginRequest);
-        if(token != null) {
-            return ResponseEntity.ok(new LoginResponse(token.getValue()));
+    public ResponseEntity<String> check(@Valid  @RequestBody CheckRequest checkRequest) {
+                boolean isValid = authService.checkAuth(checkRequest);
+        if(isValid) {
+            return ResponseEntity.ok("Valid");
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new LoginResponse("Invalid username or password"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("invalid");
 
         }
 

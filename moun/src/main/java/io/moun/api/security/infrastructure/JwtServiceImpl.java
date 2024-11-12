@@ -57,11 +57,11 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public boolean isValidToken(JwtToken jwtToken) {
+    public boolean isValidToken(JwtToken token) {
         try{
-            Jwts.parser().verifyWith(JWT_SECRET_KEY).build().parseSignedClaims(jwtToken.getValue());
+            Jwts.parser().verifyWith(JWT_SECRET_KEY).build().parseSignedClaims(token.getValue());
             return true;
-        } catch(Exception e){
+        } catch(Exception e){System.out.println(e.getMessage());
             return false;
         }
     }

@@ -1,5 +1,6 @@
 package io.moun.api.security.infrastructure;
 
+import io.moun.api.security.controller.dto.CheckRequest;
 import io.moun.api.security.controller.dto.LoginRequest;
 import io.moun.api.security.controller.dto.RegisterRequest;
 import io.moun.api.security.domain.Auth;
@@ -63,5 +64,9 @@ public class AuthServiceImpl implements AuthService {
             return null;
         }
 
+    }
+    @Override
+    public boolean checkAuth(CheckRequest checkRequest) {
+        return jwtService.isValidToken(checkRequest.getJwtToken());
     }
 }
