@@ -2,6 +2,7 @@ package io.moun.api.security.controller;
 
 import io.moun.api.security.controller.dto.LoginRequest;
 import io.moun.api.security.controller.dto.RegisterRequest;
+import io.moun.api.security.domain.vo.JwtToken;
 import io.moun.api.security.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ public class AuthController {
     }
     @PostMapping("/login")
     public ResponseEntity<String> login(@Valid  @RequestBody LoginRequest loginRequest) {
-        boolean success = authService.loginAuth(loginRequest);
-        if(!success) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login failed!");
-        } else {
+//        JwtToken success = authService.loginAuth(loginRequest);
+//        if(!success) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login failed!");
+//        } else {
             return ResponseEntity.ok("Login Success");
-        }
+//        }
 
     }
 }
