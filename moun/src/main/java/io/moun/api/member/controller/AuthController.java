@@ -3,6 +3,7 @@ package io.moun.api.member.controller;
 import io.moun.api.member.controller.dto.LoginRequest;
 import io.moun.api.member.controller.dto.RegisterRequest;
 import io.moun.api.member.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class AuthController {
         return "Hello World";
     }
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest registerRequest) {
         boolean success = authService.registerAuth(registerRequest);
         if(!success) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("username is taken!");
@@ -30,7 +31,7 @@ public class AuthController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@Valid  @RequestBody LoginRequest loginRequest) {
         boolean success = authService.loginAuth(loginRequest);
         if(!success) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login failed!");
