@@ -1,12 +1,13 @@
 package io.moun.api.security.domain.vo;
 
 import lombok.*;
+import org.springframework.security.core.token.Token;
 
-@AllArgsConstructor
+
+@Data
 @NoArgsConstructor
-@Getter
+@AllArgsConstructor
 @EqualsAndHashCode
-@Setter
 public final class JwtToken {
     private String value;
 }
