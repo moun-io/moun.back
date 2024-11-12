@@ -17,7 +17,7 @@ import java.util.Date;
 @Component
 public class JwtServiceImpl implements JwtService {
 
-    private static final int JWT_EXPIRATION_PERIOD= 40000;
+    private static final int JWT_EXPIRATION_PERIOD= 4000000;
     private static final String ENV_JWT_SECRET_KEY = "your-32-characters-or-longer-secret-key";
 
 //            System.getenv("JWT_SECRET_KEY");

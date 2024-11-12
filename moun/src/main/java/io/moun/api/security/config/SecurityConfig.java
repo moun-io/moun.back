@@ -36,8 +36,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()  // you don't need to put context-path here
                         .requestMatchers(HttpMethod.GET, "/auth").permitAll()
                         .anyRequest().authenticated())
+
                         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
 
                 //Login Method
                 http.formLogin(Customizer.withDefaults());
