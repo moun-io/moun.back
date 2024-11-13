@@ -20,18 +20,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     private AuthRepository authRepository;
+
     @Autowired
     public UserDetailsServiceImpl(AuthRepository authRepository) {
         this.authRepository = authRepository;
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Auth auth = authRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        return new User(auth.getUsername(), auth.getPassword(),mapRolesToAuthorities(auth.getRoles()));
+        return new User(auth.getUsername(), auth.getPassword(), mapRolesToAuthorities(auth.getRoles()));
 
     }
+
     private Collection<GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream().map(role->new SimpleGrantedAuthority(role.getRoleType())).collect(Collectors.toList());
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRoleType())).collect(Collectors.toList());
     }
 }

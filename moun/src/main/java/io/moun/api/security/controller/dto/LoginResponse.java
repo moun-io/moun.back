@@ -6,6 +6,7 @@ import lombok.Data;
 public class LoginResponse {
     private String tokenValue;
     private String tokenType;
+
     public LoginResponse(String tokenValue) {
         this.tokenValue = tokenValue;
     }

@@ -7,6 +7,8 @@ import io.moun.api.security.domain.vo.JwtToken;
 
 public interface AuthService {
     public boolean registerAuth(RegisterRequest registerRequest);
+
     public JwtToken loginAuth(LoginRequest loginRequest);
+
     public boolean checkAuth(CheckRequest checkRequest);
 }

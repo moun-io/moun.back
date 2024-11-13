@@ -18,29 +18,31 @@ import javax.security.auth.login.LoginContext;
 @RequestMapping("/auth")
 public class AuthController {
     private final AuthService authService;
+
     @Autowired
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
     @GetMapping
-    public String Hello(){
+    public String Hello() {
         return "Hello World";
     }
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest registerRequest) {
         boolean success = authService.registerAuth(registerRequest);
-        if(!success) {
+        if (!success) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("username is taken!");
-        } else{
+        } else {
             return ResponseEntity.status(HttpStatus.CREATED).body("User successfully registered!");
         }
     }
+
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@Valid  @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
         JwtToken token = authService.loginAuth(loginRequest);
-        if(token != null) {
+        if (token != null) {
             return ResponseEntity.ok(new LoginResponse(token.getValue()));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new LoginResponse("Invalid username or password"));
@@ -48,10 +50,11 @@ public class AuthController {
         }
 
     }
+
     @PostMapping("/check")
-    public ResponseEntity<String> check(@Valid  @RequestBody CheckRequest checkRequest) {
-                boolean isValid = authService.checkAuth(checkRequest);
-        if(isValid) {
+    public ResponseEntity<String> check(@Valid @RequestBody CheckRequest checkRequest) {
+        boolean isValid = authService.checkAuth(checkRequest);
+        if (isValid) {
             return ResponseEntity.ok("Valid");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("invalid");

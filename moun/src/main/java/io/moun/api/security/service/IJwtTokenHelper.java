@@ -7,9 +7,14 @@ import org.springframework.security.core.Authentication;
 
 public interface IJwtTokenHelper {
     public void generateToken(Authentication authentication);
-    public  String getUsername();
+
+    public String getUsername();
+
     public boolean isValidToken();
+
     public boolean isValidToken(JwtToken jwtTokenArg);
+
     public Claims getClaims();
+
     public JwtToken getJwtToken();
 }

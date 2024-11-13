@@ -9,7 +9,6 @@ import io.moun.api.security.domain.repository.RoleRepository;
 import io.moun.api.security.domain.vo.JwtToken;
 import io.moun.api.security.service.AuthService;
 import io.moun.api.security.service.IJwtTokenHelper;
-import io.moun.api.security.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,7 +40,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean registerAuth(RegisterRequest registerRequest) {
-        if(authRepository.existsByUsername(registerRequest.getUsername())) {
+        if (authRepository.existsByUsername(registerRequest.getUsername())) {
             return false;
         }
 
@@ -52,8 +51,9 @@ public class AuthServiceImpl implements AuthService {
         authRepository.save(auth);
         return true;
     }
+
     @Override
-    public JwtToken loginAuth(LoginRequest loginRequest)  {
+    public JwtToken loginAuth(LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -68,6 +68,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
     }
+
     @Override
     public boolean checkAuth(CheckRequest checkRequest) {
         return jwtTokenHelper.isValidToken(checkRequest.getJwtToken());
