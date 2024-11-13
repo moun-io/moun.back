@@ -25,23 +25,20 @@ import java.util.Date;
 public class JwtTokenHelper implements IJwtTokenHelper {
     @Getter
     private JwtToken jwtToken;
-
-
     private static final int JWT_EXPIRATION_PERIOD= 4000000;
     private static final String ENV_JWT_SECRET_KEY = "your-32-characters-or-longer-secret-key";
-
-
 //            System.getenv("JWT_SECRET_KEY");
-
-
     private static final SecretKey JWT_SECRET_KEY = Keys.hmacShaKeyFor(ENV_JWT_SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    private static final JwtParser JWT_PARSER = Jwts.parser().verifyWith(JWT_SECRET_KEY).build();
 
-    private static final JwtParser JWT_PARSER = Jwts.parser()
-            .verifyWith(JWT_SECRET_KEY)
-            .build();
+
     @Autowired
     public JwtTokenHelper(HttpServletRequest request) {
-        this.setTokenFromRequest(request);
+        // setTokenFromRequest
+        String bearerTokenValue = request.getHeader("Authorization");
+        if (bearerTokenValue != null && bearerTokenValue.startsWith("Bearer ")) {
+            jwtToken = new JwtToken(bearerTokenValue.substring(7));
+        }
     }
 
 
@@ -56,19 +53,19 @@ public class JwtTokenHelper implements IJwtTokenHelper {
     }
 
 
-    public  String getUsername() {
+    public String getUsername() {
         Claims claims = JWT_PARSER
                 .parseSignedClaims(jwtToken.getValue())
                 .getPayload();
         return claims.getSubject();
     }
 
-    public void setTokenFromRequest(HttpServletRequest request) {
-        String bearerTokenValue = request.getHeader("Authorization");
-        if (bearerTokenValue != null && bearerTokenValue.startsWith("Bearer ")) {
-            jwtToken = new JwtToken(bearerTokenValue.substring(7));
-        }
-    }
+//    public void setTokenFromRequest(HttpServletRequest request) {
+//        String bearerTokenValue = request.getHeader("Authorization");
+//        if (bearerTokenValue != null && bearerTokenValue.startsWith("Bearer ")) {
+//            jwtToken = new JwtToken(bearerTokenValue.substring(7));
+//        }
+//    }
 
     public boolean isValidToken() {
         try{
