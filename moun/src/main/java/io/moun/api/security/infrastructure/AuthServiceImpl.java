@@ -8,6 +8,7 @@ import io.moun.api.security.domain.repository.AuthRepository;
 import io.moun.api.security.domain.repository.RoleRepository;
 import io.moun.api.security.domain.vo.JwtToken;
 import io.moun.api.security.service.AuthService;
+import io.moun.api.security.service.IJwtTokenHelper;
 import io.moun.api.security.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,14 +27,15 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+    private final IJwtTokenHelper jwtTokenHelper;
+
     @Autowired
-    public AuthServiceImpl(AuthRepository authRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, AuthenticationManager authenticationManager, JwtService jwtService) {
+    public AuthServiceImpl(AuthRepository authRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, AuthenticationManager authenticationManager, IJwtTokenHelper jwtTokenHelper) {
         this.authRepository = authRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
+        this.jwtTokenHelper = jwtTokenHelper;
     }
 
 
@@ -59,7 +61,8 @@ public class AuthServiceImpl implements AuthService {
                             loginRequest.getPassword()
                     ));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return  jwtService.generateToken(authentication);
+            jwtTokenHelper.generateToken(authentication);
+            return jwtTokenHelper.getJwtToken();
         } catch (AuthenticationException e) {
             return null;
         }
@@ -67,6 +70,6 @@ public class AuthServiceImpl implements AuthService {
     }
     @Override
     public boolean checkAuth(CheckRequest checkRequest) {
-        return jwtService.isValidToken(checkRequest.getJwtToken());
+        return jwtTokenHelper.isValidToken(checkRequest.getJwtToken());
     }
 }

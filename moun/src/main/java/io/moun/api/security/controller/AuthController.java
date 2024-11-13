@@ -22,10 +22,12 @@ public class AuthController {
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
+
     @GetMapping
     public String Hello(){
         return "Hello World";
     }
+
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest registerRequest) {
         boolean success = authService.registerAuth(registerRequest);
