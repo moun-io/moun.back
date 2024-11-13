@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 
 public interface IJwtTokenHelper {
+    public JwtToken getJwtToken();
+
     public void generateToken(Authentication authentication);
 
     public String getUsername();
@@ -16,5 +18,4 @@ public interface IJwtTokenHelper {
 
     public Claims getClaims();
 
-    public JwtToken getJwtToken();
 }

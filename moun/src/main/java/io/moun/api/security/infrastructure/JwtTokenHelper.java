@@ -7,8 +7,6 @@ import io.jsonwebtoken.security.Keys;
 import io.moun.api.security.domain.vo.JwtToken;
 import io.moun.api.security.service.IJwtTokenHelper;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -23,7 +21,6 @@ import java.util.Date;
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class JwtTokenHelper implements IJwtTokenHelper {
-    @Getter
     private JwtToken jwtToken;
     private static final int JWT_EXPIRATION_PERIOD= 4000000;
     private static final String ENV_JWT_SECRET_KEY = "your-32-characters-or-longer-secret-key";
@@ -41,6 +38,9 @@ public class JwtTokenHelper implements IJwtTokenHelper {
         }
     }
 
+    public JwtToken getJwtToken() {
+        return jwtToken;
+    }
 
     public void generateToken(Authentication authentication) {
         String tokenValue =Jwts.builder()
@@ -49,7 +49,7 @@ public class JwtTokenHelper implements IJwtTokenHelper {
                 .expiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_PERIOD))
                 .signWith(JWT_SECRET_KEY)
                 .compact();
-        jwtToken = new JwtToken(tokenValue);
+        this.jwtToken = new JwtToken(tokenValue);
     }
 
 
