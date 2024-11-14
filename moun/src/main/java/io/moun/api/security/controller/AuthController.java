@@ -33,7 +33,7 @@ AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
 
-        JwtToken jwtToken = authService.loginAuth(loginRequest);
+        JwtToken jwtToken = authService.login(loginRequest);
         if (jwtToken != null) {
             return ResponseEntity.ok(new LoginResponse(jwtToken));
         } else {
@@ -43,7 +43,7 @@ AuthController {
     }
     @PostMapping("/check")
     public ResponseEntity<String> check(@Valid @RequestBody CheckRequest checkRequest) {
-        authService.checkAuth(checkRequest);
+        authService.check(checkRequest);
         return ResponseEntity.status(HttpStatus.OK).body("Valid");
     }
 }

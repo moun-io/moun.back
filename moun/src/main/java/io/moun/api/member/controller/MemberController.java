@@ -2,7 +2,7 @@ package io.moun.api.member.controller;
 
 import io.moun.api.member.controller.dto.RegisterRequest;
 import io.moun.api.member.domain.Member;
-//import io.moun.api.member.service.MemberAuthService;
+import io.moun.api.member.service.MemberApplicationService;
 import io.moun.api.member.service.MemberService;
 import jakarta.validation.Valid;
 import org.apache.tomcat.websocket.AuthenticationException;
@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/members")
 public class MemberController {
+    private final MemberApplicationService memberApplicationService;
     private final MemberService memberService;
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, MemberApplicationService memberApplicationService) {
         this.memberService = memberService;
+        this.memberApplicationService = memberApplicationService;
     }
 
     @GetMapping
@@ -31,10 +33,10 @@ public class MemberController {
     }
 
 
-//    @PostMapping
-//    public ResponseEntity<String> createMember(@Valid @RequestBody RegisterRequest registerRequest) {
-//
-//    }
+    @PostMapping
+    public ResponseEntity<String> createMember(@Valid @RequestBody RegisterRequest registerRequest) {
+        memberApplicationService.registerMemberAuth(registerRequest);
+    }
 }
 
 

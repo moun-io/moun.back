@@ -7,10 +7,10 @@ import io.moun.api.security.domain.Auth;
 import io.moun.api.security.domain.vo.JwtToken;
 
 public interface AuthService {
-    public void registerAuth(RegisterRequest registerRequest);
+    public void save(RegisterRequest registerRequest);
 
-    public JwtToken loginAuth(LoginRequest loginRequest);
+    public JwtToken login(LoginRequest loginRequest);
 
-    public void checkAuth(CheckRequest checkRequest);
+    public void check(CheckRequest checkRequest);
     public Auth findAuthByUsername(String username);
 }

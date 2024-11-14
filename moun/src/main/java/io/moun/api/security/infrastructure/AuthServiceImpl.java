@@ -40,7 +40,7 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public void registerAuth(RegisterRequest registerRequest) {
+    public void save(RegisterRequest registerRequest) {
         if (authRepository.existsByUsername(registerRequest.getUsername())) {
             throw new UsernameAlreadyExistsException(registerRequest.getUsername());
         }
@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public JwtToken loginAuth(LoginRequest loginRequest) {
+    public JwtToken login(LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -69,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void checkAuth(CheckRequest checkRequest) {
+    public void check(CheckRequest checkRequest) {
         boolean isValid = jwtTokenHelper.isValidToken(checkRequest.getJwtToken());
         if (!isValid) {
             throw new AuthenticationCredentialsNotFoundException("Invalid token");
