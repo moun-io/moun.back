@@ -19,8 +19,6 @@ public class Member extends BaseEntity {
     private Long id;
 
     @Embedded
-    private Auth auth;
-    @Embedded
     private SNS sns;
     
     @NotNull
