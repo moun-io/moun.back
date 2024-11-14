@@ -45,6 +45,5 @@ AuthController {
     public ResponseEntity<String> check(@Valid @RequestBody CheckRequest checkRequest) {
         authService.checkAuth(checkRequest);
         return ResponseEntity.status(HttpStatus.OK).body("Valid");
-
     }
 }
