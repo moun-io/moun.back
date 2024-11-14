@@ -7,6 +7,6 @@ import java.security.Principal;
 public interface MemberService {
     public Member findById(Long id);
     public void save(Member member);
-    public void saveDefault();
+    public void saveDefault(Principal principal);
 
 }

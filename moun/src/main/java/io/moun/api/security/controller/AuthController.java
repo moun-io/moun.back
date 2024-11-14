@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class
+AuthController {
     private final AuthService authService;
 
     @Autowired
@@ -27,26 +28,23 @@ public class AuthController {
         return "Hello World";
     }
 
+
+
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+
         JwtToken jwtToken = authService.loginAuth(loginRequest);
         if (jwtToken != null) {
             return ResponseEntity.ok(new LoginResponse(jwtToken));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
         }
 
     }
     @PostMapping("/check")
     public ResponseEntity<String> check(@Valid @RequestBody CheckRequest checkRequest) {
-        boolean isValid = authService.checkAuth(checkRequest);
-        if (isValid) {
-            return ResponseEntity.ok("Valid");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("invalid");
-
-        }
+        authService.checkAuth(checkRequest);
+        return ResponseEntity.status(HttpStatus.OK).body("Valid");
 
     }
 }
