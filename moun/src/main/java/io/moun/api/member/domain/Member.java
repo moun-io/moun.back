@@ -21,9 +21,9 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY) // 실제로 데이터 로딩하지 않음
-    @JoinColumn(name = "username", referencedColumnName = "username") // 외래 키 설정
-    private Auth auth; // 실제로 User 객체를 로딩하지 않음
+//    @OneToOne(fetch = FetchType.LAZY) // 실제로 데이터 로딩하지 않음
+//    @JoinColumn(name = "auth_id", referencedColumnName = "id") // 외래 키 설정
+//    private Auth auth; // 실제로 User 객체를 로딩하지 않음
 
     @Embedded
     private SNS sns;

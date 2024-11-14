@@ -7,10 +7,12 @@ import io.moun.api.member.service.MemberService;
 import io.moun.api.security.service.AuthService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 
 
+@Service
 public class MemberApplicationServiceImpl implements MemberApplicationService {
     private MemberService memberService;
     private AuthService authService;
@@ -25,7 +27,7 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
     @Transactional
     public void registerMemberAuth(RegisterRequest registerRequest) {
         authService.save(registerRequest);
-        memberService.save();
+//        memberService.save();
     }
 
 

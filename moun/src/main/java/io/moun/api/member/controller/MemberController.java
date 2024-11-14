@@ -36,6 +36,7 @@ public class MemberController {
     @PostMapping
     public ResponseEntity<String> createMember(@Valid @RequestBody RegisterRequest registerRequest) {
         memberApplicationService.registerMemberAuth(registerRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
 
