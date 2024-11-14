@@ -1,6 +1,6 @@
 package io.moun.api.member.domain;
 
-import io.moun.api.common.domain.BaseEntity;
+import io.moun.api.common.BaseEntity;
 import io.moun.api.song.domain.Song;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -18,8 +18,6 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Embedded
-    private Auth auth;
     @Embedded
     private SNS sns;
     
