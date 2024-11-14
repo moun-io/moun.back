@@ -25,9 +25,10 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
 
     @Override
     @Transactional
-    public void registerMemberAuth(RegisterRequest registerRequest) {
-        authService.save(registerRequest);
-//        memberService.save();
+    public Member registerMemberAuth(RegisterRequest registerRequest) {
+        Member savedMember =memberService.saveDefault();
+        authService.save(registerRequest,savedMember);
+        return savedMember;
     }
 
 

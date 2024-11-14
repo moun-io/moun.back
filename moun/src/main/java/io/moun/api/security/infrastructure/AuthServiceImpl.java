@@ -1,5 +1,6 @@
 package io.moun.api.security.infrastructure;
 
+import io.moun.api.member.domain.Member;
 import io.moun.api.member.service.MemberService;
 import io.moun.api.security.controller.dto.CheckRequest;
 import io.moun.api.security.controller.dto.LoginRequest;
@@ -40,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public void save(RegisterRequest registerRequest) {
+    public void save(RegisterRequest registerRequest, Member member) {
         if (authRepository.existsByUsername(registerRequest.getUsername())) {
             throw new UsernameAlreadyExistsException(registerRequest.getUsername());
         }
@@ -48,6 +49,7 @@ public class AuthServiceImpl implements AuthService {
         auth.setUsername(registerRequest.getUsername());
         auth.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         auth.addRole("ROLE_USER");
+        auth.setMember(member);
         authRepository.save(auth);
     }
 

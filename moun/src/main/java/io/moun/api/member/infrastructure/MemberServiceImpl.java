@@ -29,16 +29,16 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public void save(Member member) {
-        memberRepository.save(member);
+    public Member save(Member member) {
+        return memberRepository.save(member);
     }
     @Override
-    public void saveDefault(Principal principal){
+    public Member saveDefault(){
         Member member= new Member();
         member.setDescription("please introduce yourself");
         member.setProfilePictureUrl("");
         member.setDisplayName("Mounie");
-        memberRepository.save(member);
+        return memberRepository.save(member);
     }
 
 

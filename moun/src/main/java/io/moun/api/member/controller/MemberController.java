@@ -34,9 +34,9 @@ public class MemberController {
 
 
     @PostMapping
-    public ResponseEntity<String> createMember(@Valid @RequestBody RegisterRequest registerRequest) {
-        memberApplicationService.registerMemberAuth(registerRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Member> createMember(@Valid @RequestBody RegisterRequest registerRequest) {
+        Member member = memberApplicationService.registerMemberAuth(registerRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(member);
     }
 }
 
