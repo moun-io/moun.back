@@ -16,12 +16,10 @@ import java.security.Principal;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private JwtTokenHelper jwtTokenHelper;
-    private AuthService authService;
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository, JwtTokenHelper jwtTokenHelper,AuthService authService) {
+    public MemberServiceImpl(MemberRepository memberRepository, JwtTokenHelper jwtTokenHelper) {
         this.memberRepository = memberRepository;
         this.jwtTokenHelper = jwtTokenHelper;
-        this.authService = authService;
     }
 
     @Override
@@ -36,10 +34,8 @@ public class MemberServiceImpl implements MemberService {
     }
     @Override
     public void saveDefault(Principal principal){
-        Auth auth = authService.findAuthByUsername(principal.getName());
         Member member= new Member();
         member.setDescription("please introduce yourself");
-        member.setAuth(auth);
         member.setProfilePictureUrl("");
         member.setDisplayName("Mounie");
         memberRepository.save(member);

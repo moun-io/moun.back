@@ -17,7 +17,11 @@ public class Auth {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotNull
+    @Column(unique = true)
     private String username;
     @NotNull
     private String password;
