@@ -73,4 +73,9 @@ public class AuthServiceImpl implements AuthService {
     public boolean checkAuth(CheckRequest checkRequest) {
         return jwtTokenHelper.isValidToken(checkRequest.getJwtToken());
     }
+    @Override
+    public Auth findAuthByUsername(String username) {
+        return authRepository.findByUsername(username).orElse(null);
+    }
 }
+
