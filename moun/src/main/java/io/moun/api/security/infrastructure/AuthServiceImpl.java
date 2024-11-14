@@ -1,8 +1,9 @@
 package io.moun.api.security.infrastructure;
 
+import io.moun.api.member.service.MemberService;
 import io.moun.api.security.controller.dto.CheckRequest;
 import io.moun.api.security.controller.dto.LoginRequest;
-import io.moun.api.security.controller.dto.RegisterRequest;
+import io.moun.api.member.controller.dto.RegisterRequest;
 import io.moun.api.security.domain.Auth;
 import io.moun.api.security.domain.repository.AuthRepository;
 import io.moun.api.security.domain.repository.RoleRepository;
@@ -18,11 +19,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AuthServiceImpl implements AuthService {
     private final AuthRepository authRepository;
+    private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final AuthenticationManager authenticationManager;

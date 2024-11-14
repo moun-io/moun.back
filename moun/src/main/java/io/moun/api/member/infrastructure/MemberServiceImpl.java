@@ -1,6 +1,5 @@
 package io.moun.api.member.infrastructure;
 
-import io.moun.api.member.controller.dto.MemberCreateRequest;
 import io.moun.api.member.domain.Member;
 import io.moun.api.member.domain.repository.MemberRepository;
 import io.moun.api.member.service.MemberService;
@@ -32,14 +31,17 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public void save(Principal principal) {
+    public void save(Member member) {
+        memberRepository.save(member);
+    }
+    @Override
+    public void saveDefault(Principal principal){
         Auth auth = authService.findAuthByUsername(principal.getName());
         Member member= new Member();
         member.setDescription("please introduce yourself");
         member.setAuth(auth);
         member.setProfilePictureUrl("");
         member.setDisplayName("Mounie");
-
         memberRepository.save(member);
     }
 
