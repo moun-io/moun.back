@@ -36,8 +36,8 @@ public class MemberController {
     }
 //    @GetMapping("/me")
 //    public ResponseEntity<MemberResponse> getMember(Principal principal) {
-//        MemberResponse member = memberService.findByUsername(principal.getName());
-//        return ResponseEntity.ok();
+//        MemberResponse memberResponse = memberService.findByUsername(principal.getName());
+//        return ResponseEntity.ok(memberResponse);
 //    }
 
 

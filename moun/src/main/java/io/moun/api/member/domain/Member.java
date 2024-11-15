@@ -22,7 +22,7 @@ public class Member extends BaseEntity {
     private Long id;
 
 //    @OneToOne(fetch = FetchType.LAZY) // 실제로 데이터 로딩하지 않음
-//    @JoinColumn(name = "auth_id", referencedColumnName = "id") // 외래 키 설정
+//    @JoinColumn(name = "auth_username", referencedColumnName = "username") // 외래 키 설정
 //    private Auth auth; // 실제로 User 객체를 로딩하지 않음
 
     @Embedded
@@ -32,9 +32,11 @@ public class Member extends BaseEntity {
     private String displayName;
     @NotNull
     private String description;
+    @NotNull
+    private boolean verified;
 
     private String profilePictureUrl;
 
-//    @OneToMany(fetch = FetchType.LAZY,  mappedBy = "member")
-//    private List<Song> songs;
+    @OneToMany(fetch = FetchType.LAZY,  mappedBy = "member")
+    private List<Song> songs;
 }
