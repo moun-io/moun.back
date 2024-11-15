@@ -47,8 +47,8 @@ public class JwtFilter extends OncePerRequestFilter {
             } catch (Exception e){
                 handleException(response,e,500,"An error occurred while logging in");
             }
-
         }
+        filterChain.doFilter(request, response);
 
     }
     private void handleException(HttpServletResponse response, Exception e, int statusCode, String msg) throws IOException {
