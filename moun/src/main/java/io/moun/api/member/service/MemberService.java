@@ -8,5 +8,5 @@ public interface MemberService {
     public Member findById(Long id);
     public Member save(Member member);
     public Member saveDefault();
-
+    public Member findByUsername(String username);
 }

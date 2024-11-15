@@ -16,15 +16,15 @@ public class AuthExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(AuthExceptionHandler.class);
 
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> authenticationExceptionHandler(final Exception e) {
+//    @ExceptionHandler(Exception.class)
+    public void authenticationExceptionHandler(final Exception e) {
         logger.info(e.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Authentication failed : Bad Request");
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<String> usernameNotFoundExceptionHandler(final UsernameNotFoundException e) {
-
+        logger.info(e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username Not Found with the JWT token. Check the Database" + e.getMessage());
     }
 

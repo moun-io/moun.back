@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/members")
 @RequiredArgsConstructor
@@ -32,6 +34,11 @@ public class MemberController {
         Member member = memberService.findById(id);
         return ResponseEntity.ok(member);
     }
+//    @GetMapping("/me")
+//    public ResponseEntity<MemberResponse> getMember(Principal principal) {
+//        MemberResponse member = memberService.findByUsername(principal.getName());
+//        return ResponseEntity.ok();
+//    }
 
 
     @PostMapping

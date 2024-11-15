@@ -24,6 +24,13 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public Member findByUsername(String username) {
+        memberRepository.findByUsername(username).orElse(null);
+        return memberRepository.findByUsername(username).orElse(null);
+
+    }
+
     @Transactional
     @Override
     public Member save(Member member) {
@@ -38,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
         member.setDisplayName("Mounie");
         return memberRepository.save(member);
     }
+
 
 
 }
