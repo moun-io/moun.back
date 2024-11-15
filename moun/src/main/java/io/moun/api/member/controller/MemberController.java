@@ -1,5 +1,7 @@
 package io.moun.api.member.controller;
 
+import io.moun.api.member.controller.dto.MemberResponse;
+import io.moun.api.member.controller.dto.MemberUpdateRequest;
 import io.moun.api.member.controller.dto.RegisterRequest;
 import io.moun.api.member.domain.Member;
 import io.moun.api.member.service.MemberApplicationService;
@@ -37,6 +39,10 @@ public class MemberController {
     public ResponseEntity<Member> createMember(@Valid @RequestBody RegisterRequest registerRequest) {
         Member member = memberApplicationService.registerMemberAuth(registerRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(member);
+    }
+    @PutMapping
+    public ResponseEntity<MemberUpdateRequest> updateMember(@Valid @RequestBody MemberUpdateRequest memberUpdateRequest) {
+            return ResponseEntity.status(HttpStatus.OK).body(memberUpdateRequest);
     }
 }
 
